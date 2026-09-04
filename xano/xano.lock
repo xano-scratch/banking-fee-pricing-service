@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "objects": {
+    "app:auth": {
+      "guid": "4fe67f5a2d319eaaca7996700f27edd8",
+      "canonical": "auth",
+      "canonical_source": "code"
+    },
+    "app:pricing": {
+      "guid": "5dc9b8b4e58653f89b527ae50dc0ac62",
+      "canonical": "pricing",
+      "canonical_source": "code"
+    },
+    "app:seed": {
+      "guid": "7110fabc369b25f0581044e47d499906",
+      "canonical": "seed",
+      "canonical_source": "code"
+    },
+    "dbo:accounts": {
+      "guid": "d79ee2e0226ccb53c0abc59b83e4ac40"
+    },
+    "dbo:fee_schedules": {
+      "guid": "b676a929945eea1c745f85ef2936abbc"
+    },
+    "dbo:products": {
+      "guid": "6494cf5345cf0e72e2dc7fdaeface8b8"
+    },
+    "dbo:quote_log": {
+      "guid": "95786c7c822d04843753659d8c5cadb9"
+    },
+    "dbo:rate_tiers": {
+      "guid": "5a63a0d1dbcdf2a41800e3ecf5e9db11"
+    },
+    "dbo:users": {
+      "guid": "157d4a98d979cf04b9ccdb98dfc15229"
+    },
+    "function:compute_quote": {
+      "guid": "a9d7367dddfd27824672f8894bdd5b7c"
+    },
+    "query:auth|GET|me": {
+      "guid": "bfd70d24f92356209c72088852ec320e"
+    },
+    "query:auth|POST|login": {
+      "guid": "d39d74f907baeb484e9c93358362998a"
+    },
+    "query:pricing|GET|audit": {
+      "guid": "22fa34c23cb98dd0c0f35c9646107264"
+    },
+    "query:pricing|GET|lookups": {
+      "guid": "dab1c509960b20de4b1284bc0f56c53c"
+    },
+    "query:pricing|GET|quote/{id}": {
+      "guid": "48fffb3403c9ddf0deb56ab726e63867"
+    },
+    "query:pricing|GET|schedule/{product_id}": {
+      "guid": "7ed47313cb7a1bdf74080775bdead713"
+    },
+    "query:pricing|POST|quote": {
+      "guid": "0bbc922c91f9a7d46e16da5e4dd26dfc"
+    },
+    "query:pricing|POST|schedule/publish": {
+      "guid": "e3a802db9ae994cd42f0d9526fa7efd3"
+    },
+    "query:seed|GET|run": {
+      "guid": "ccb9ab1e83cd9f409dedfd25f10f699e"
+    },
+    "query:seed|GET|status": {
+      "guid": "3edd5ee19f18441468b7e7cd1df20c05"
+    }
+  }
+}

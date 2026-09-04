@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking Fee &amp; Pricing Service — a governed Xano pricing service</title>
+    <meta
+      name="description"
+      content="A Xano backend that computes bank account fees from one versioned rule set, so every system quotes the same number. Business Logic Centralization for banking, authored in TypeScript with @xanots/sdk."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --panel: #141414;
+        --panel-2: #1c1c1c;
+        --border: #2a2a2a;
+        --fg: #fafafa;
+        --muted: #a1a1a1;
+        --accent: #f5f5f5;
+        --accent-fg: #0a0a0a;
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+      header.hero { padding: 72px 0 40px; }
+      .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+        padding: 4px 10px; border-radius: 999px;
+        background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+      }
+      h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; }
+      .tagline { font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); max-width: 44ch; margin: 0 0 22px; }
+      .meta { color: var(--muted); font-size: 14px; margin: 0 0 26px; }
+      .meta strong { color: var(--fg); font-weight: 600; }
+
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: 15px;
+        text-decoration: none; border: 1px solid transparent; transition: transform 0.05s ease, background 0.15s ease;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn.primary { background: var(--accent); color: var(--accent-fg); }
+      .btn.primary:hover { background: #ffffff; }
+      .btn.ghost { background: transparent; border-color: var(--border); color: var(--fg); }
+      .btn.ghost:hover { background: var(--panel); }
+
+      .shot { margin: 44px 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+      .shot img { display: block; width: 100%; height: auto; }
+
+      section { padding: 32px 0; border-top: 1px solid var(--border); }
+      h2 { font-size: 22px; letter-spacing: -0.01em; margin: 0 0 8px; }
+      section > .wrap > p.lead { color: var(--muted); margin: 0 0 20px; max-width: 62ch; }
+
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+      .card h3 { margin: 0 0 6px; font-size: 15px; }
+      .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; }
+      td.mono, .method { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: nowrap; }
+      .method { font-weight: 600; }
+      .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+
+      pre {
+        background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 16px 18px; overflow-x: auto; font-size: 13.5px; color: #e6e6e6; margin: 0;
+      }
+      .note { color: var(--muted); font-size: 13px; margin-top: 14px; }
+      footer { padding: 40px 0 64px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+      footer a { color: var(--fg); }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <div class="badges">
+          <span class="badge">Play 1 · Business Logic Centralization</span>
+          <span class="badge">Banking</span>
+          <span class="badge">XanoTS · TypeScript</span>
+        </div>
+        <h1>Banking Fee &amp; Pricing Service</h1>
+        <p class="tagline">
+          One versioned rule set computes every account fee, so every system quotes the same number and can see the
+          exact schedule version and rate tier behind it.
+        </p>
+        <p class="meta"><strong>6 tables</strong> · <strong>10 APIs</strong> · <strong>1 shared function</strong> · <strong>3 API groups</strong> · runs on seed data</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/xano-scratch/banking-fee-pricing-service">View on GitHub</a>
+          <a class="btn ghost" href="#use">Use this template</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="shot">
+        <img
+          src="screenshot.png"
+          alt="The Quote screen showing a computed fee with the base fee, tier adjustment, schedule version, and rate tier that produced it"
+        />
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2>What it demonstrates</h2>
+        <p class="lead">
+          Most banks copy fee logic into each app that needs it. The copies drift, and no one can say which number is
+          correct. This service moves the rule into one governed calculation a technical reviewer can read and trust.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3>Define once, version it</h3>
+            <p>A versioned fee schedule per product. Exactly one version is active at a time, and publishing a draft retires the old one.</p>
+          </div>
+          <div class="card">
+            <h3>One shared function</h3>
+            <p>compute_quote resolves the active schedule, selects the balance tier, and computes the fee. The endpoint and the seed routine both call it.</p>
+          </div>
+          <div class="card">
+            <h3>Reproducible audit trail</h3>
+            <p>Every quote is logged with the version and tier applied, so a past decision stays correct after a price change.</p>
+          </div>
+          <div class="card">
+            <h3>API-layer RBAC</h3>
+            <p>A pricing_admin can publish and retire schedules. A pricing_viewer can read and quote. Enforced at the endpoint, never row-level security.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>API surface</h2>
+        <p class="lead">All paths are <span class="mono">/api:&lt;group&gt;/&lt;name&gt;</span>. Protected endpoints take a bearer token.</p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>Method</th><th>Path</th><th>Access</th><th>What it enforces</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="method">POST</td><td class="mono">/api:auth/login</td><td>public</td><td>Email and password to a bearer token.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:auth/me</td><td>any role</td><td>The caller's identity and role.</td></tr>
+              <tr><td class="method">POST</td><td class="mono">/api:pricing/quote</td><td>any role</td><td>Computes a fee through compute_quote and logs it. Rejects a product with no active schedule.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:pricing/schedule/{product_id}</td><td>any role</td><td>The active schedule with its ordered tiers, plus any draft.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:pricing/quote/{id}</td><td>any role</td><td>Replays one past quote with the version and tier applied at quote time.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:pricing/audit</td><td>any role</td><td>The quote history, filterable by account, product, and date range.</td></tr>
+              <tr><td class="method">POST</td><td class="mono">/api:pricing/schedule/publish</td><td>pricing_admin</td><td>Activates a draft and retires the current active version.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:pricing/lookups</td><td>any role</td><td>Products and accounts for the UI selectors.</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:seed/run</td><td>public</td><td>Rebuilds the demo data (idempotent).</td></tr>
+              <tr><td class="method">GET</td><td class="mono">/api:seed/status</td><td>public</td><td>Row counts, so the frontend self-seeds a fresh environment.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Three screens</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Quote</h3>
+            <p>Pick an account and product, get the fee with the base and tier breakdown, the rate tier, and the schedule version that produced it.</p>
+          </div>
+          <div class="card">
+            <h3>Schedule</h3>
+            <p>A product's active schedule and its rate tiers, with version and status badges. An admin sees the draft and a Publish action.</p>
+          </div>
+          <div class="card">
+            <h3>Audit</h3>
+            <p>The quote history, filterable by account, product, and date range, showing the same governed number every system received.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="wrap">
+        <h2>Use this template</h2>
+        <p class="lead">
+          Clone it and deploy it to your own Xano account in a minute. Or paste this prompt to a coding agent and let it
+          set up and explain the template for you.
+        </p>
+        <pre class="mono">Clone https://github.com/xano-scratch/banking-fee-pricing-service and set it
+up on my own Xano account. Read the README, run `npm install`, then
+`npx xanots login` and `npm run xano:deploy`. Then show me how the
+compute_quote function centralizes the fee rule, and how publishing a draft
+schedule retires the active one.</pre>
+        <p class="lead" style="margin-top: 24px">Or do it by hand:</p>
+        <pre class="mono">git clone https://github.com/xano-scratch/banking-fee-pricing-service
+cd banking-fee-pricing-service
+npm install
+npx xanots login
+npm run xano:deploy</pre>
+        <p class="note">
+          The deploy prints a live URL. The app seeds itself on first load. Sign in with
+          <span class="mono">admin@bank.example</span> / <span class="mono">admin-pass-123</span> (admin) or
+          <span class="mono">viewer@bank.example</span> / <span class="mono">viewer-pass-123</span> (viewer).
+        </p>
+        <p class="note">
+          Any live preview link shared elsewhere is an ephemeral Xano environment and expires. This repo is the durable
+          artifact: re-deploy any time with <span class="mono">npm run xano:deploy</span> for fresh links.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        A generated XanoTS proof artifact in the <span class="mono">xano-scratch</span> org. Backend authored in
+        TypeScript with <a href="https://www.npmjs.com/package/@xanots/sdk">@xanots/sdk</a>. MIT licensed.
+      </div>
+    </footer>
+  </body>
+</html>
